@@ -1,4 +1,5 @@
 package com.logica3;
+import com.clearspring.analytics.stream.cardinality.HyperLogLog;
 
 public class RandomAlgorithms {
 
@@ -42,4 +43,21 @@ public class RandomAlgorithms {
         arr[high] = temp;
         return i + 1;
     }
+
+    public long counting(int[] arr){
+        return hyperLogLog(arr);
+    }
+
+    private long hyperLogLog(int[] arr){
+        HyperLogLog hll = new HyperLogLog(14);
+        for (int i = 0; i < arr.length; i++){
+            hll.offer(arr[i]);
+        }
+        long estimatedDistinct = hll.cardinality();
+
+        return estimatedDistinct;
+
+        
+    }
 }
+            

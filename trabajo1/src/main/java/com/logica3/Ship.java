@@ -98,9 +98,15 @@ public class Ship {
                 case "Mental Sickness":
                     break;
                 case "Pirates":
-                    // Pirates pirates = (Pirates) event;
-                    // int[]arr2 = pirates.ids;
-
+                    Pirates pirates = (Pirates) event;
+                    int[]arr2 = pirates.ids;
+                    long estimatedDistinct = randomAlgorithms.counting(arr2);
+                    if (estimatedDistinct == 10){
+                        System.out.println("Pirates have kidnapped 10 women!");
+                    }
+                    else{
+                        System.out.println("Pirates have kidnapped 10 men!");
+                    }
                     break;
                 case "Solar Storm":
                     break;
