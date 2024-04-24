@@ -109,6 +109,19 @@ public class Ship {
                     }
                     break;
                 case "Solar Storm":
+                    SolarStorm solarStorm = (SolarStorm) event;
+                    int[]arr3 = solarStorm.ids;
+                    int[] sample = randomAlgorithms.sampling(arr3, 100);
+                    deads = 0;
+                    for (int n : sample) {
+                        double indexRoom = n / 4;
+                        int i = (int) indexRoom / 5;
+                        int j = (int ) indexRoom % 5;
+                        if (this.rooms[i][j].removeRandomPerson())
+                            deads++;
+                    }
+                    System.out.println(sample.length + " asteroids hit the ship.");
+                    System.out.println("Total deads: " + deads);
                     break;
             }
         }

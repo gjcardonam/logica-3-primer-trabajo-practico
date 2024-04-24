@@ -1,4 +1,6 @@
 package com.logica3;
+import java.util.Random;
+
 import com.clearspring.analytics.stream.cardinality.HyperLogLog;
 
 public class RandomAlgorithms {
@@ -56,8 +58,29 @@ public class RandomAlgorithms {
         long estimatedDistinct = hll.cardinality();
 
         return estimatedDistinct;
+    }
 
+    public int[] sampling(int[] arr, int k){
+        return reservoirSample(arr, k);
+    }
+
+    private int[] reservoirSample(int[] stream, int k) {
+        int[] reservoir = new int[k];
+        int i;
+        Random rand = new Random();
         
+        for (i = 0; i < k; i++) {
+            reservoir[i] = stream[i];
+        }
+        
+        for (; i < stream.length; i++) {
+            int j = rand.nextInt(i + 1);
+            
+            if (j < k) {
+                reservoir[j] = stream[i];
+            }
+        }
+        return reservoir;
     }
 }
             
