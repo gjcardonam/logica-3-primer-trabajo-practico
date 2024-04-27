@@ -3,8 +3,8 @@ package com.logica3;
 import java.util.List;
 
 public class Ship {
-        private Room[][] rooms;
-        private RandomAlgorithms randomAlgorithms;
+        private final Room[][] rooms;
+        private final RandomAlgorithms randomAlgorithms;
 
         public Ship(){
             this.rooms = new Room[5][5];
@@ -77,25 +77,17 @@ public class Ship {
 
         private void handleEvent(Event event){
             event.occur();
+            int dead = 0;
             switch (event.getName()) {
-                case "Air Poisonous Scape":
+                case "Air Poisonous Scape", "Mental Sickness":
                     break;
                 case "Asteroid":
                     Asteroid asteroids = (Asteroid) event;
                     int[]arr = asteroids.ids;
                     randomAlgorithms.ordering(arr);
-                    int deads = 0;
-                    for (int n : arr) {
-                        double indexRoom = n / 4;
-                        int i = (int) indexRoom / 5;
-                        int j = (int ) indexRoom % 5;
-                        if (this.rooms[i][j].removeRandomPerson())
-                            deads++;
-                    }
+                    dead = getDead(dead, arr);
                     System.out.println(arr.length + " asteroids hit the ship.");
-                    System.out.println("Total deads: " + deads);
-                    break;
-                case "Mental Sickness":
+                    System.out.println("Total dead: " + dead);
                     break;
                 case "Pirates":
                     Pirates pirates = (Pirates) event;
@@ -112,18 +104,22 @@ public class Ship {
                     SolarStorm solarStorm = (SolarStorm) event;
                     int[]arr3 = solarStorm.ids;
                     int[] sample = randomAlgorithms.sampling(arr3, 100);
-                    deads = 0;
-                    for (int n : sample) {
-                        double indexRoom = n / 4;
-                        int i = (int) indexRoom / 5;
-                        int j = (int ) indexRoom % 5;
-                        if (this.rooms[i][j].removeRandomPerson())
-                            deads++;
-                    }
+                    dead = getDead(dead, sample);
                     System.out.println(sample.length + " asteroids hit the ship.");
-                    System.out.println("Total deads: " + deads);
+                    System.out.println("Total dead: " + dead);
                     break;
             }
         }
 
+    private int getDead(int dead, int[] arr) {
+        for (int n : arr) {
+            int indexRoom = n / 4;
+            int i = indexRoom / 5;
+            int j = indexRoom % 5;
+            if (this.rooms[i][j].removeRandomPerson())
+                dead++;
+        }
+        return dead;
     }
+
+}
