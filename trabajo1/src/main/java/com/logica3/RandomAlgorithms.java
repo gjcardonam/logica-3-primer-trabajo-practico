@@ -52,12 +52,11 @@ public class RandomAlgorithms {
 
     private long hyperLogLog(int[] arr){
         HyperLogLog hll = new HyperLogLog(14);
-        for (int i = 0; i < arr.length; i++){
-            hll.offer(arr[i]);
+        for (int j : arr) {
+            hll.offer(j);
         }
-        long estimatedDistinct = hll.cardinality();
 
-        return estimatedDistinct;
+        return hll.cardinality();
     }
 
     public int[] sampling(int[] arr, int k){
@@ -81,6 +80,20 @@ public class RandomAlgorithms {
             }
         }
         return reservoir;
+    }
+
+    public boolean[] bloomFilter(int[] arr, int[] keys){
+        boolean[] bloom = new boolean[1000];
+        for (int key : keys){
+            bloom[hash1(key)] = true;
+            bloom[hash2(key)] = true;
+            bloom[hash3(key)] = true;
+        }
+        boolean[] result = new boolean[arr.length];
+        for (int i = 0; i < arr.length; i++){
+            result[i] = bloom[hash1(arr[i])] && bloom[hash2(arr[i])] && bloom[hash3(arr[i])];
+        }
+        return result;
     }
 }
             

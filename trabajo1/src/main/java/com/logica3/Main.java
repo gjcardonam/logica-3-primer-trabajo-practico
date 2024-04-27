@@ -20,34 +20,20 @@ public class Main {
         Route route = new Route();
 
         // Settings
-        // planetGama.setEventProbability(
-        //     0,
-        //     0, 
-        //     0.35, 
-        //     0.35, 
-        //     0.3
-        //     );
-        planetGama.setEventProbability(
-            0,
-            0, 
-            0, 
-            1, 
-            0
-            );
-        // planetBeta.setEventProbability(
-        //     0.4, 
-        //     0.2, 
-        //     0, 
-        //     0.4, 
-        //     0
-        //     );
-        planetBeta.setEventProbability(
-            0, 
-            1, 
-            0, 
-            0, 
-            0
-            );
+         planetGama.setEventProbability(
+             0,
+             0,
+             0.35,
+             0.35,
+             0.3
+             );
+         planetBeta.setEventProbability(
+             0.4,
+             0.2,
+             0,
+             0.4,
+             0
+             );
         planetSigma.setEventProbability(
             0, 
             0.25, 

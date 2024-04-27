@@ -1,5 +1,6 @@
 package com.logica3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ship {
@@ -79,15 +80,35 @@ public class Ship {
             event.occur();
             int dead = 0;
             switch (event.getName()) {
-                case "Air Poisonous Scape", "Mental Sickness":
+                case "Air Poisonous Scape":
+                    AirPoisonousScape airPoisonousScape = (AirPoisonousScape) event;
+                    int[] keys = airPoisonousScape.ids;
+                    int[] rooms = new int[100];
+                    for (int i = 0; i < 100; i++) {
+                        rooms[i] = i;
+                    }
+                    boolean[] inSet = randomAlgorithms.bloomFilter(rooms, keys);
+                    for (int i = 0; i < 100; i++) {
+                        if (inSet[i]) {
+                            System.out.println("Room " + i + " possibly has been poisoned.");
+                        }
+                    }
                     break;
                 case "Asteroid":
                     Asteroid asteroids = (Asteroid) event;
                     int[]arr = asteroids.ids;
                     randomAlgorithms.ordering(arr);
-                    dead = getDead(dead, arr);
+                    for (int n : arr) {
+                        int indexRoom = n / 4;
+                        int i = indexRoom / 5;
+                        int j = indexRoom % 5;
+                        if (this.rooms[i][j].removeRandomPerson())
+                            dead++;
+                    }
                     System.out.println(arr.length + " asteroids hit the ship.");
                     System.out.println("Total dead: " + dead);
+                    break;
+                case "Mental Sickness":
                     break;
                 case "Pirates":
                     Pirates pirates = (Pirates) event;
@@ -103,23 +124,36 @@ public class Ship {
                 case "Solar Storm":
                     SolarStorm solarStorm = (SolarStorm) event;
                     int[]arr3 = solarStorm.ids;
-                    int[] sample = randomAlgorithms.sampling(arr3, 100);
-                    dead = getDead(dead, sample);
-                    System.out.println(sample.length + " asteroids hit the ship.");
+                    int[] shields = randomAlgorithms.sampling(arr3, 100);
+                    int[] noShields = getNoShields(shields);
+                    for (int n : noShields) {
+                        int indexRoom = n / 4;
+                        int i = indexRoom / 5;
+                        int j = indexRoom % 5;
+                        if (this.rooms[i][j].removeRandomPerson())
+                            dead++;
+                    }
+                    System.out.println(shields.length + " asteroids hit the ship.");
                     System.out.println("Total dead: " + dead);
                     break;
             }
         }
 
-    private int getDead(int dead, int[] arr) {
-        for (int n : arr) {
-            int indexRoom = n / 4;
-            int i = indexRoom / 5;
-            int j = indexRoom % 5;
-            if (this.rooms[i][j].removeRandomPerson())
-                dead++;
+    private static int[] getNoShields(int[] shields) {
+        List<Integer> noShields = new ArrayList<>();
+        for (int i = 0; i < 100; i++){
+            boolean found = false;
+            for (int shield : shields) {
+                if (i == shield) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                noShields.add(i);
+            }
         }
-        return dead;
+        return noShields.stream().mapToInt(i -> i).toArray();
     }
 
 }
