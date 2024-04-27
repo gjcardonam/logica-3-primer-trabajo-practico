@@ -29,11 +29,11 @@ public class Ship {
             boolean successful = false;
             while (!successful && attempts < 3){
                 try{
-                    double n = this.randomAlgorithms.hash1(person.getId());
+                    double n = this.randomAlgorithms.hash1(person.id());
                     if (attempts == 1)
-                        n = this.randomAlgorithms.hash2(person.getId());
+                        n = this.randomAlgorithms.hash2(person.id());
                     if (attempts == 2)
-                        n = this.randomAlgorithms.hash3(person.getId());
+                        n = this.randomAlgorithms.hash3(person.id());
                     double indexRoom = n / 4;
                     int i = (int) indexRoom / 5;
                     int j = (int ) indexRoom % 5;
@@ -49,17 +49,13 @@ public class Ship {
 
         }
 
-        // public Room getRoom(int x, int y){
-        //     return this.rooms[x][y];
-        // }
-
         public void listPeople(){
             for(int i=0; i<5; i++){
                 for(int j=0; j<5; j++){
                     List<Person> persons = this.rooms[i][j].getPersons();
                     for (Person person : persons){
                         if(person != null){
-                            System.out.println("Person " + person.getName() + " with id " + person.getId() + " is in room " + i + " " + j);
+                            System.out.println("Person " + person.name() + " with id " + person.id() + " is in room " + i + " " + j);
                         }
                     }
                 }

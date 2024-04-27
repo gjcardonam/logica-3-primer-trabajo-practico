@@ -1,7 +1,7 @@
 package com.logica3;
 
 public class Node {
-    private Planet planet;
+    private final Planet planet;
     private Node next;
     
     public Node( Planet planet ) {

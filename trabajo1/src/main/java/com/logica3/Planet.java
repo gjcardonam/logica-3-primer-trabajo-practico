@@ -1,7 +1,7 @@
 package com.logica3;
 
 public class Planet {
-    private String name;
+    private final String name;
     private double airPoisonousScapeProbability;
     private double asteroidProbability;
     private double mentalSicknessProbability;

@@ -7,9 +7,9 @@ public class Ship {
     // Function generate travel report
 }
 
-public class Room {
+public classroom {
     // List Persons
-    // Function asign place
+    // Function assign place
 }
 
 public class Planet {

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    private List<Person> persons;
+    private final List<Person> persons;
 
     public Room(){
-        this.persons = new ArrayList<Person>(4);
+        this.persons = new ArrayList<>(4);
 
         for (int i = 0; i < 4; i++) {
             this.persons.add(null);
@@ -38,14 +38,6 @@ public class Room {
         }
         return false;
     }
-
-    // public boolean isFull(){
-    //     return this.persons.size() == 4;
-    // }
-
-    // public boolean isEmpty(){
-    //     return this.persons.size() == 0;
-    // }
 
     public List<Person> getPersons(){
         return this.persons;

@@ -2,7 +2,7 @@ package com.logica3;
 
 public class MentalSickness extends Event{
     public MentalSickness(){
-        super("Mental Sickness", "Mental sickness outbreak");
+        super("Mental Sickness");
     }
 
     @Override

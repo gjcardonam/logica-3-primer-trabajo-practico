@@ -1,20 +1,20 @@
 package com.logica3;
 
 public class Pirates extends Event {
-    public int[] ids;
+    public final int[] ids;
 
     public Pirates() {
-        super("Pirates", "Space pirates invasion");
+        super("Pirates");
         
         ids = new int[10000];
 
         int valorActual = 1;
-        int posicion = 0;
+        int position = 0;
 
-        while (posicion < ids.length) {
+        while (position < ids.length) {
             for (int i = 0; i < 1000; i++) {
-                ids[posicion] = valorActual;
-                posicion++;
+                ids[position] = valorActual;
+                position++;
             }
             valorActual++;
         }
