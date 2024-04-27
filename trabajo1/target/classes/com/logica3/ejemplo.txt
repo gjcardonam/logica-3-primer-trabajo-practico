@@ -1,0 +1,49 @@
+public class Ship {
+    // Matrix Rooms
+    // Function arrive
+    // Function travel
+    // Function handle planet event
+    // Function generate planet report
+    // Function generate travel report
+}
+
+public class Room {
+    // List Persons
+    // Function asign place
+}
+
+public class Planet {
+    // Function generate event
+}
+
+public class Person {
+    // Personal information
+}
+
+public class Route {
+    // Chained list
+}
+
+public class Report {
+    // Data from planet and people before and after events
+}
+
+public class Event {
+    // Dataclass with event names
+}
+
+public class RandomAlgorithms {
+    // Every randomize algorithm
+}
+
+// Algoritmo
+
+// Crear personas
+// Abordar nave
+//     Ver si hay puesto
+// Establecer ruta
+// Viajar por la ruta
+//     Generar eventos en cada planeta
+//     Manejar estos eventos - eliminar tripulantes
+//     Generar reporte del planeta - quienes entraron y quienes salieron
+// Generar informe de viaje
