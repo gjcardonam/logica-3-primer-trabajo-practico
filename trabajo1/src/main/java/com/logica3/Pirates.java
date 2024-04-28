@@ -5,12 +5,9 @@ public class Pirates extends Event {
 
     public Pirates() {
         super("Pirates");
-        
         ids = new int[10000];
-
         int valorActual = 1;
         int position = 0;
-
         while (position < ids.length) {
             for (int i = 0; i < 1000; i++) {
                 ids[position] = valorActual;
@@ -18,7 +15,6 @@ public class Pirates extends Event {
             }
             valorActual++;
         }
-        
     }
 
     @Override

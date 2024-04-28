@@ -129,7 +129,7 @@ public class Ship {
                         if (this.rooms[i][j].removeRandomPerson())
                             dead++;
                     }
-                    System.out.println(shields.length + " asteroids hit the ship.");
+                    System.out.println(shields.length + " solar storm hit the ship.");
                     System.out.println("Total dead: " + dead);
                     break;
             }

@@ -10,7 +10,7 @@ public class Asteroid extends Event {
         ids = new int[1000];
         Random random = new Random();
         for (int i = 0; i < 1000; i++) {
-            int randomId = random.nextInt(100);
+            int randomId = random.nextInt(99);
             ids[i] = randomId;
         }
     }

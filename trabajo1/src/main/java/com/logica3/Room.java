@@ -31,7 +31,7 @@ public class Room {
     }
 
     public boolean removeRandomPerson(){
-        int index = (int) (Math.random() * 4);
+        int index = (int) (Math.random() * 3);
         if (this.persons.get(index) != null){
             this.persons.set(index, null);
             return true;

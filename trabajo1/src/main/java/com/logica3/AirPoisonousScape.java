@@ -10,7 +10,7 @@ public class AirPoisonousScape extends Event{
         ids = new int[100000];
         Random random = new Random();
         for (int i = 0; i < 100000; i++) {
-            int randomId = random.nextInt(100);
+            int randomId = random.nextInt(99);
             ids[i] = randomId;
         }
     }
