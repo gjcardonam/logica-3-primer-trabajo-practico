@@ -12,7 +12,7 @@ public class RandomPersonGenerator {
 
     public static Person createRandomPerson(int id) {
         String name = names[random.nextInt(names.length)];
-        int age = 10 + random.nextInt(90);
+        int age = random.nextInt(100);
         String gender = genders[random.nextInt(genders.length)];
         int[] familyIds = random.ints(1, 10000).limit(5).toArray();
         return new Person(id, name, age, gender, familyIds);

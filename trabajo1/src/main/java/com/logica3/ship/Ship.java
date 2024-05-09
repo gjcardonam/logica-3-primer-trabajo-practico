@@ -13,6 +13,7 @@ public class Ship {
     private final Room[][] rooms;
     RandomAlgorithms randomAlgorithms = new RandomAlgorithms();
     List<Report> reports = new ArrayList<>();
+    Room[][] initialPeople;
 
     public Ship(){
         this.rooms = new Room[5][5];
@@ -27,6 +28,7 @@ public class Ship {
         for (Person person : persons){
             this.addPerson(person);
         }
+        this.initialPeople = deepCopyRooms(this.rooms);
     }
 
     private void addPerson(Person person){
@@ -76,10 +78,11 @@ public class Ship {
             Event event = planet.generateEvent();
             Room[][] roomsBeforeDamage = deepCopyRooms(this.rooms);
             handleEvent(event);
-            compareRooms(roomsBeforeDamage, this.rooms);
+//            compareRooms(roomsBeforeDamage, this.rooms);
             reports.add(new Report(planet, event, roomsBeforeDamage, this.rooms));
             node = node.getNext();
         }
+        compareRooms(this.initialPeople, this.rooms);
     }
 
     private void compareRooms(Room[][] before, Room[][] after) {
