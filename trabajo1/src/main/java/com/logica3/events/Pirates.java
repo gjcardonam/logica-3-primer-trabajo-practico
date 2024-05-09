@@ -1,4 +1,4 @@
-package com.logica3;
+package com.logica3.events;
 
 public class Pirates extends Event {
     public final int[] ids;

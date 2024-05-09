@@ -1,4 +1,4 @@
-package com.logica3;
+package com.logica3.events;
 
 import java.util.Random;
 

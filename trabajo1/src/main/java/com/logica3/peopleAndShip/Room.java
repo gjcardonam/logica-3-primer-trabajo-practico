@@ -1,4 +1,4 @@
-package com.logica3;
+package com.logica3.peopleAndShip;
 
 import java.util.ArrayList;
 import java.util.List;

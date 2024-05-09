@@ -1,4 +1,4 @@
-package com.logica3;
+package com.logica3.planet;
 
 public class Route {
     private Node head;

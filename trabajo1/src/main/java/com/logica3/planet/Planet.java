@@ -1,4 +1,6 @@
-package com.logica3;
+package com.logica3.planet;
+
+import com.logica3.events.*;
 
 public class Planet {
     private final String name;

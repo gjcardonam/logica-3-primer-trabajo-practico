@@ -1,12 +1,12 @@
-package com.logica3;
+package com.logica3.events;
 
 import java.util.Random;
 
-public class SolarStorm extends Event{
+public class Asteroid extends Event {
     public final int[] ids;
 
-    public SolarStorm(){
-        super("Solar Storm");
+    public Asteroid() {
+        super("Asteroid");
         ids = new int[1000];
         Random random = new Random();
         for (int i = 0; i < 1000; i++) {
@@ -17,6 +17,6 @@ public class SolarStorm extends Event{
 
     @Override
     public void occur() {
-        System.out.println("A solar storm has disrupted the planet's atmosphere!");
+        System.out.println("Critical alert! A barrage of asteroids has struck the ship");
     }
 }

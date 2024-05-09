@@ -1,4 +1,4 @@
-package com.logica3;
+package com.logica3.events;
 
 public abstract class Event {
     protected final String name;

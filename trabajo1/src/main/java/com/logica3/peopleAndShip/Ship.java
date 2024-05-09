@@ -1,4 +1,9 @@
-package com.logica3;
+package com.logica3.peopleAndShip;
+
+import com.logica3.randomAlgorithms.RandomAlgorithms;
+import com.logica3.events.*;
+import com.logica3.planet.Node;
+import com.logica3.planet.Route;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,14 +83,14 @@ public class Ship {
             switch (event.getName()) {
                 case "Air Poisonous Scape":
                     AirPoisonousScape airPoisonousScape = (AirPoisonousScape) event;
-                    int[] keys = airPoisonousScape.ids;
+                    int[] examResults = airPoisonousScape.ids;
                     int[] rooms = new int[100];
                     for (int i = 0; i < 100; i++) {
                         rooms[i] = i;
                     }
-                    boolean[] inSet = randomAlgorithms.bloomFilter(rooms, keys);
+                    boolean[] findingResults = randomAlgorithms.finding(rooms, examResults);
                     for (int i = 0; i < 100; i++) {
-                        if (inSet[i]) {
+                        if (findingResults[i]) {
                             System.out.println("Room " + i + " possibly has been poisoned.");
                         }
                     }
@@ -109,7 +114,7 @@ public class Ship {
                 case "Pirates":
                     Pirates pirates = (Pirates) event;
                     int[]arr2 = pirates.ids;
-                    long estimatedDistinct = randomAlgorithms.counting(arr2);
+                    double estimatedDistinct = randomAlgorithms.counting(arr2);
                     if (estimatedDistinct == 10){
                         System.out.println("Pirates have kidnapped 10 women!");
                     }
