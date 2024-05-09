@@ -1,7 +1,7 @@
 package com.logica3;
 
 import com.logica3.people.Person;
-import com.logica3.peopleAndShip.Ship;
+import com.logica3.ship.Ship;
 import com.logica3.planet.Planet;
 import com.logica3.planet.Route;
 

@@ -1,4 +1,4 @@
-package com.logica3.peopleAndShip;
+package com.logica3.ship;
 
 import com.logica3.people.Person;
 
@@ -14,6 +14,11 @@ public class Room {
         for (int i = 0; i < 4; i++) {
             this.persons.add(null);
         }
+    }
+
+    public Room(Room other) {
+        this.persons = new ArrayList<>(other.persons.size());
+        this.persons.addAll(other.persons);
     }
 
     public void assignPlace(Person person, int index){
