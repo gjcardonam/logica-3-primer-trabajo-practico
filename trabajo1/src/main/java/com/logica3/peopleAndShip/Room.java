@@ -1,5 +1,7 @@
 package com.logica3.peopleAndShip;
 
+import com.logica3.people.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 

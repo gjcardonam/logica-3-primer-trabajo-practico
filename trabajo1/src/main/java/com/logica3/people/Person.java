@@ -1,8 +1,8 @@
-package com.logica3.peopleAndShip;
+package com.logica3.people;
 
 public record Person(
-        String name,
         int id,
+        String name,
         int age,
         String gender,
         int[] familyIds

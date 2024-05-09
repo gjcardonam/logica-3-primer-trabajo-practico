@@ -1,5 +1,6 @@
 package com.logica3.peopleAndShip;
 
+import com.logica3.people.Person;
 import com.logica3.randomAlgorithms.RandomAlgorithms;
 import com.logica3.events.*;
 import com.logica3.planet.Node;
@@ -12,6 +13,7 @@ public class Ship {
         private final Room[][] rooms;
         private final RandomAlgorithms randomAlgorithms;
 
+
         public Ship(){
             this.rooms = new Room[5][5];
             for(int i=0; i<5; i++){
@@ -23,7 +25,7 @@ public class Ship {
             this.randomAlgorithms = new RandomAlgorithms();
         }
 
-        public void board(Person[] persons){
+        public void board(List<Person> persons){
             for (Person person : persons){
                 this.addPerson(person);
             }
@@ -39,10 +41,11 @@ public class Ship {
                         n = this.randomAlgorithms.hash2(person.id());
                     if (attempts == 2)
                         n = this.randomAlgorithms.hash3(person.id());
-                    double indexRoom = n / 4;
+                    int indexRoom = (int) (n / 4);
                     int i = (int) indexRoom / 5;
                     int j = (int ) indexRoom % 5;
-                    this.rooms[i][j].assignPlace(person, (int) n % 4);
+                    int seat = (int) n % 4;
+                    this.rooms[i][j].assignPlace(person, seat);
                     successful = true;
                 }
                 catch (IllegalArgumentException e){
