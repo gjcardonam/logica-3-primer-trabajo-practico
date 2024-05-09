@@ -7,8 +7,7 @@ import com.logica3.events.*;
 import com.logica3.planet.Node;
 import com.logica3.planet.Route;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Ship {
     private final Room[][] rooms;
@@ -147,9 +146,25 @@ public class Ship {
                     int[]arr2 = pirates.ids;
                     double estimatedDistinct = randomAlgorithms.counting(arr2);
                     if (estimatedDistinct == 10){
+                        List<Person> women = new ArrayList<>();
+                        for(int i=0; i<5; i++){
+                            for(int j=0; j<5; j++){
+                                Person[] womenInRoom = this.rooms[i][j].getWomen();
+                                women.addAll(Arrays.asList(womenInRoom));
+                            }
+                        }
+                        kidnapPeople(dead, women);
                         System.out.println("Pirates have kidnapped 10 women!");
                     }
                     else{
+                        List<Person> men = new ArrayList<>();
+                        for(int i=0; i<5; i++){
+                            for(int j=0; j<5; j++){
+                                Person[] menInRoom = this.rooms[i][j].getMen();
+                                men.addAll(Arrays.asList(menInRoom));
+                            }
+                        }
+                        kidnapPeople(dead, men);
                         System.out.println("Pirates have kidnapped 10 men!");
                     }
                     break;
@@ -162,14 +177,38 @@ public class Ship {
                         int indexRoom = n / 4;
                         int i = indexRoom / 5;
                         int j = indexRoom % 5;
-                        if (this.rooms[i][j].removeRandomPerson())
-                            dead++;
+                        List<Person> persons = this.rooms[i][j].getPersons();
+                        for (int seat = 0; seat < persons.size(); seat++) {
+                            Person person = persons.get(seat);
+                            if (person != null && person.isBaby()) {
+                                if (this.rooms[i][j].removePerson(seat)) {
+                                    dead++;
+                                    break;
+                                }
+                            }
+                        }
                     }
                     System.out.println(shields.length + " solar storm hit the ship.");
                     System.out.println("Total dead: " + dead);
                     break;
             }
         }
+
+    private void kidnapPeople(int dead, List<Person> persons) {
+        Collections.shuffle(persons);
+        List<Person> selectedPersons = persons.size() >= 10 ? persons.subList(0, 10) : persons;
+        for (Person person: selectedPersons) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    if (this.rooms[i][j].getPersons().contains(person)) {
+                        int seat = this.rooms[i][j].getPersons().indexOf(person);
+                        if(this.rooms[i][j].removePerson(seat))
+                            dead++;
+                    }
+                }
+            }
+        }
+    }
 
     private static int[] getNoShields(int[] shields) {
         List<Integer> noShields = new ArrayList<>();

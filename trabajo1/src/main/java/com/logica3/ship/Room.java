@@ -4,6 +4,7 @@ import com.logica3.people.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Room {
     private final List<Person> persons;
@@ -29,12 +30,13 @@ public class Room {
         this.persons.set(index, person);
     }
 
-    public void removePerson(int index){
+    public boolean removePerson(int index){
         if (this.persons.get(index) != null){
             // System.out.println("Place is already taken");
             this.persons.set(index, null);
+            return true;
         }
-        throw new IllegalArgumentException();
+        return false;
     }
 
     public boolean removeRandomPerson(){
@@ -44,6 +46,14 @@ public class Room {
             return true;
         }
         return false;
+    }
+
+    public Person[] getWomen(){
+        return this.persons.stream().filter(person -> person != null && person.isWoman()).toArray(Person[]::new);
+    }
+
+    public Person[] getMen(){
+        return this.persons.stream().filter(person -> person != null && person.isMan()).toArray(Person[]::new);
     }
 
     public List<Person> getPersons(){
