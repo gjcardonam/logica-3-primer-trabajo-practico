@@ -45,7 +45,6 @@ public class Main {
             0, 
             0.35
             );
-
         route.addPlanet(planetGama);
         route.addPlanet(planetBeta);
         route.addPlanet(planetSigma);
