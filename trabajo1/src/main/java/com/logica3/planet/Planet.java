@@ -4,11 +4,7 @@ import com.logica3.events.*;
 
 public class Planet {
     private final String name;
-    private double airPoisonousScapeProbability;
-    private double asteroidProbability;
-    private double mentalSicknessProbability;
-    private double piratesProbability;
-    private double solarStormProbability;
+    private EventFactory eventFactory;
 
     public Planet(String name){
         this.name = name;
@@ -19,27 +15,16 @@ public class Planet {
     }
 
     public void setEventProbability(double airPoisonousScapeProbability, double asteroidProbability, double mentalSicknessProbability, double piratesProbability, double solarStormProbability){
-        this.airPoisonousScapeProbability = airPoisonousScapeProbability;
-        this.asteroidProbability = asteroidProbability;
-        this.mentalSicknessProbability = mentalSicknessProbability;
-        this.piratesProbability = piratesProbability;
-        this.solarStormProbability = solarStormProbability;
+        EventProbability eventProbability = new EventProbability(airPoisonousScapeProbability, asteroidProbability, mentalSicknessProbability, piratesProbability, solarStormProbability);
+        this.eventFactory = new EventFactory(eventProbability);
+
     }
 
     public Event generateEvent(){
-        double random = Math.random();
-        if (random < this.airPoisonousScapeProbability){
-            return new AirPoisonousScape();
-        } else if (random < this.airPoisonousScapeProbability + this.asteroidProbability){
-            return new Asteroid();
-        } else if (random < this.airPoisonousScapeProbability + this.asteroidProbability + this.mentalSicknessProbability){
-            return new MentalSickness();
-        } else if (random < this.airPoisonousScapeProbability + this.asteroidProbability + this.mentalSicknessProbability + this.piratesProbability){
-            return new Pirates();
-        } else if (random < this.airPoisonousScapeProbability + this.asteroidProbability + this.mentalSicknessProbability + this.piratesProbability + this.solarStormProbability){
-            return new SolarStorm();
+        if (this.eventFactory == null){
+            throw new IllegalStateException("Event probability not set");
         }
-        return null;
+        return eventFactory.generateEvent();
     }
-    
+
 }

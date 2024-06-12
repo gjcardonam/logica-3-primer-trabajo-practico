@@ -74,14 +74,23 @@ public class Ship {
         Node node = route.getHead();
         while (node != null){
             Planet planet = node.getPlanet();
+
+            // Traveling message
             System.out.println("Traveling to " + planet.getName());
-            Event event = planet.generateEvent();
+
             Room[][] roomsBeforeDamage = deepCopyRooms(this.rooms);
-            handleEvent(event);
-//            compareRooms(roomsBeforeDamage, this.rooms);
-            reports.add(new Report(planet, event, roomsBeforeDamage, this.rooms));
+
+            // An event occurs in the planet and the ship is damaged
+            Event event = planet.generateEvent();
+            handleEvent(event); // Handle the event and people die
+
+            // Generate a report
+            Room [][] roomsAfterDamage = deepCopyRooms(this.rooms);
+            reports.add(new Report(planet, event, roomsBeforeDamage, roomsAfterDamage));
+
             node = node.getNext();
         }
+        // Generate final comparison after all events have occurred in all planets and people have died or been kidnapped
         compareRooms(this.initialPeople, this.rooms);
     }
 
@@ -230,4 +239,7 @@ public class Ship {
         return noShields.stream().mapToInt(i -> i).toArray();
     }
 
+    public void generateFinalReport() {
+
+    }
 }

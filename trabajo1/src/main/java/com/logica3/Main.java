@@ -10,49 +10,50 @@ import java.util.List;
 import static com.logica3.people.RandomPersonGenerator.generateRandomPeople;
 
 public class Main {
+    private static Ship ship;
+    private static List<Person> persons;
+    private static Route route;
+
     public static void main(String[] args) {
 
-        // Objects
+        godCreateEveryThing();
+
+        ship.board(persons);
+        ship.travel(route);
+        ship.generateFinalReport();
+    }
+
+    public static void godCreateEveryThing(){
+        // Setup
+        ship = new Ship();
+        persons = generateRandomPeople(1000000);
         Planet planetGama = new Planet("Gama");
         Planet planetBeta = new Planet("Beta");
         Planet planetSigma = new Planet("Sigma");
-
-        Ship ship = new Ship();
-
-        List<Person> persons = generateRandomPeople(1000000);
-
-        Route route = new Route();
-
-        // Settings
-         planetGama.setEventProbability(
-             0,
-             0,
-             0.35,
-             0.35,
-             0.3
-             );
-         planetBeta.setEventProbability(
-             0.4,
-             0.2,
-             0,
-             0.4,
-             0
-             );
+        planetGama.setEventProbability(
+                0,
+                0,
+                0.35,
+                0.35,
+                0.3
+        );
+        planetBeta.setEventProbability(
+                0.4,
+                0.2,
+                0,
+                0.4,
+                0
+        );
         planetSigma.setEventProbability(
-            0, 
-            0.25, 
-            0.4, 
-            0, 
-            0.35
-            );
+                0,
+                0.25,
+                0.4,
+                0,
+                0.35
+        );
+        route = new Route();
         route.addPlanet(planetGama);
         route.addPlanet(planetBeta);
         route.addPlanet(planetSigma);
-
-        
-        // Algorithm
-        ship.board(persons);
-        // ship.listPeople();
-        ship.travel(route);
     }
 }
