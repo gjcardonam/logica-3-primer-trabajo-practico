@@ -15,12 +15,28 @@ public class Main {
     private static Route route;
 
     public static void main(String[] args) {
+        long totalStartTime = System.currentTimeMillis();
 
         godCreateEveryThing();
 
+        long boardStartTime = System.currentTimeMillis();
         ship.board(persons);
+        long boardEndTime = System.currentTimeMillis();
+        long boardTime = boardEndTime - boardStartTime;
+
+        long travelStartTime = System.currentTimeMillis();
         ship.travel(route);
+        long travelEndTime = System.currentTimeMillis();
+        long travelTime = travelEndTime - travelStartTime;
+
         ship.generateFinalReport();
+
+        long totalEndTime = System.currentTimeMillis();
+        long totalTime = totalEndTime - totalStartTime;
+
+        System.out.println("Tiempo de abordaje: " + boardTime + " milisegundos");
+        System.out.println("Tiempo de viaje por los planetas: " + travelTime + " milisegundos");
+        System.out.println("Tiempo total de ejecución del algoritmo: " + totalTime + " milisegundos");
     }
 
     public static void godCreateEveryThing(){
