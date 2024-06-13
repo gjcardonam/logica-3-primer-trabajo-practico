@@ -254,14 +254,34 @@ public class Ship {
 
         Set<Integer> distinctAges = new HashSet<>();
         int totalCount = 0;
+        int sumOfAges = 0;
+        Map<Integer, Integer> ageFrequency = new HashMap<>();
+
         for (Person person : allPeople) {
             if (person != null) {
-                distinctAges.add(person.age());
+                int age = person.age();
+                distinctAges.add(age);
                 totalCount++;
+                sumOfAges += age;
+                ageFrequency.put(age, ageFrequency.getOrDefault(age, 0) + 1);
             }
         }
 
+        double averageAge = (double) sumOfAges / totalCount;
+        double secondMoment = 0;
+
+        for (Map.Entry<Integer, Integer> entry : ageFrequency.entrySet()) {
+            int age = entry.getKey();
+            int frequency = entry.getValue();
+            double deviation = age - averageAge;
+            secondMoment += frequency * deviation * deviation;
+        }
+
+        secondMoment /= totalCount;
+
         System.out.println("Cantidad de personas con edades distintas: " + distinctAges.size());
         System.out.println("Total de personas que quedaron en la nave: " + totalCount);
+        System.out.println("Segundo momento: " + secondMoment);
+        System.out.println("Edad promedio: " + averageAge);
     }
 }
