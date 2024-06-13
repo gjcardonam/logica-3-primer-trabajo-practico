@@ -240,6 +240,28 @@ public class Ship {
     }
 
     public void generateFinalReport() {
+        System.out.println("Reporte final:");
+        showDistinctAgesAndTotalCount();
+    }
 
+    public void showDistinctAgesAndTotalCount() {
+        List<Person> allPeople = new ArrayList<>();
+        for (Room[] row : rooms) {
+            for (Room room : row) {
+                allPeople.addAll(room.getPersons());
+            }
+        }
+
+        Set<Integer> distinctAges = new HashSet<>();
+        int totalCount = 0;
+        for (Person person : allPeople) {
+            if (person != null) {
+                distinctAges.add(person.age());
+                totalCount++;
+            }
+        }
+
+        System.out.println("Cantidad de personas con edades distintas: " + distinctAges.size());
+        System.out.println("Total de personas que quedaron en la nave: " + totalCount);
     }
 }

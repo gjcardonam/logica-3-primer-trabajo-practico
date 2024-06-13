@@ -3,6 +3,7 @@ package com.logica3.ship;
 import com.logica3.people.Person;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -62,5 +63,9 @@ public class Room {
 
     public Person getPerson (int index){
         return this.persons.get(index);
+    }
+
+    public List<Person> getPeople() {
+        return persons;
     }
 }
