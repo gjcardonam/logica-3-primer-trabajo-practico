@@ -8,7 +8,7 @@ public class RandomPersonGenerator {
 
     private static final Random random = new Random();
     private static final String[] names = {"Alice", "Bob", "Charlie", "David", "Eva", "Fiona", "George", "Hannah", "Ian", "Julia", "Kevin", "Lana", "Mike", "Nora", "Oscar", "Paula", "Quinn", "Rita", "Steve", "Tina", "Umberto", "Vivian", "Walter", "Xena", "Yvonne", "Zack"};
-    private static final String[] genders = {"Male", "Female", "Other"};
+    private static final String[] genders = {"Male", "Female" };
 
     public static Person createRandomPerson(int id) {
         String name = names[random.nextInt(names.length)];
